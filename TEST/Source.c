@@ -2,7 +2,7 @@
 
 int main()
 {
-	printf_s("Yalla Sheyaavod!");
-	printf_s("Ya");
+	printf_s("Yalla amen!!!");
+	printf_s("Yalla");
 	return(0);
 }
