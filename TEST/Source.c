@@ -48,7 +48,7 @@ void time_request()
 {
 	int hour, minute, random;
 	int added_hour, added_minutes;
-	printf_s("Give me 3 numbers: the first one the hour, the second one is the minutes, the third one is the number of minutes you want to add\n");
+	printf_s("Give me 3 numbers: the first one the hours, the second one is the minutes, the third one is the number of minutes you want to add\n");
 	printf_s("for example, if the clock now showes 23:11 you enter 23 11 (random number):\n");
 	scanf_s("%d %d %d", &hour, &minute, &random);
 	added_minutes = random % 60; //calculates minutes added
