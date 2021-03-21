@@ -10,9 +10,9 @@ void ball_throw();
 
 void main()
 {
-	average_calc();
+	//average_calc();
 	time_request(); 
-	ball_throw();
+	//ball_throw();
 }
 
 void average_calc()
@@ -57,5 +57,5 @@ void time_request()
 	hour %= 24;
 	minute += added_minutes;
 	minute %= 60;
-	printf_s("The new time is: %d:%d", hour,minute);
+	printf_s("The new time is: %2d:%1d%1d", hour,minute/10,minute%10);
 }
