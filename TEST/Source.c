@@ -7,12 +7,14 @@
 void time_request();
 void average_calc();
 void ball_throw();
+void Get_bigger();
 
 void main()
 {
 	//average_calc();
-	time_request(); 
+	//time_request(); 
 	//ball_throw();
+	Get_bigger();
 }
 
 void average_calc()
@@ -59,3 +61,37 @@ void time_request()
 	minute %= 60;
 	printf_s("The new time is: %2d:%1d%1d", hour,minute/10,minute%10);
 }
+
+void Get_bigger()
+{
+	int num1, num2, num3;
+	printf_s("Hi, give me 3 numbers, and i'll tell you which one of them is the biggest\n");
+	printf_s("Enter the numbers in this structure: num1 num2 num3\n");
+	scanf_s("%d %d %d", &num1, &num2, &num3);
+
+	if (num1 >= num2)
+	{
+		//num1 > num2, and now we check the relations with num3
+		if (num1 >= num3) //num1 > num2 && num1 > num3
+			printf_s("The biggest number is: %d", num1);
+		else //num1 > num2 && num3 > num1
+			printf_s("The biggest number is: %d", num3);
+	}
+	else if (num2 >= num3) //we defenitly know num2 > num1
+		printf_s("The biggest number is: %d", num2);
+	else
+		printf_s("The biggest number is: %d", num3);
+}
+
+/*
+	Tirgul class number 3, question 2:
+
+	~0 << 3 & 3 * 3 =
+	((~0) << 3) & (3*3) =
+	([(11111111) = (binary of ~0)] << 3) & (9)
+	(11111000) & [(00001001) = (binary of 9)]
+	(00001000) = 8 (decimal value)
+
+	Hex = 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F = [16 base]
+	octal = 0,1,2,3,4,5,6,7,8 = [8 base]
+*/
