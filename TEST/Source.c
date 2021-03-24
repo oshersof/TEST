@@ -11,9 +11,9 @@ void Get_bigger();
 
 void main()
 {
-	//average_calc();
-	//time_request(); 
-	//ball_throw();
+	average_calc();
+	time_request(); 
+	ball_throw();
 	Get_bigger();
 }
 
