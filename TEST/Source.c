@@ -1,20 +1,31 @@
 #include <stdio.h>
 #include<math.h>
 
-#define PI 3.14159265
+#define PI 3.141592653
 #define G 9.81
+#define DELTA 0.0001
 
 void time_request();
 void average_calc();
 void ball_throw();
 void Get_bigger();
+void Grade_status_to_screen();
+void Hot_cold_game();
+void Fibonachi_series();
+void calculate_pie_value_lyvnitch();
+void free_ball_throw();
 
 void main()
 {
-	average_calc();
-	time_request(); 
-	ball_throw();
-	Get_bigger();
+	//average_calc();
+	//time_request();
+	//ball_throw();
+	//Get_bigger();
+	//Grade_status_to_screen();
+	//Hot_cold_game();
+	//Fibonachi_series();
+	//calculate_pie_value_lyvnitch();
+	//free_ball_throw();
 }
 
 void average_calc()
@@ -81,6 +92,202 @@ void Get_bigger()
 		printf_s("The biggest number is: %d", num2);
 	else
 		printf_s("The biggest number is: %d", num3);
+}
+
+void Grade_status_to_screen()
+{
+	//We can assume that the input is between 0 - 100
+
+	int grade;
+	printf_s("Give me your grade: ");
+	scanf_s("%d", &grade);
+	
+	if (grade <= 56)
+	{
+		printf_s("You failed\n");
+	}
+	else if (grade >= 57 && grade <= 79)
+	{
+		printf_s("You passed\n");
+	}
+	else
+	{
+		printf_s("You passed in a good grade!\n");
+	}
+}
+
+void Hot_cold_game()
+{
+	int num_to_guess, guessed_num;
+	int difference, flag = 0;
+	printf_s("Give me the number that the player should guess: ");
+	scanf_s("%d", &num_to_guess);
+
+	for (int i = 0; i < 500; i++)
+	{
+		printf_s("%d \n",i+1);
+	}
+
+	do
+	{
+		printf_s("write your guess: ");
+		scanf_s("%d", &guessed_num);
+
+		difference = num_to_guess - guessed_num;
+		difference = abs(difference);
+
+		/* we could have used this short if check instead of abs():
+		
+		if (difference < 0)
+		{
+			difference *= -1; //the value without the sign
+		} */ 
+
+		if (difference != 0)
+		{
+			//first command
+			if (difference >= 1000)
+			{
+				printf_s("VERY COLD!\n");
+			}
+			else if (difference >= 100)
+			{
+				printf_s("COLD!\n");
+			}
+			else if (difference >= 10)
+			{
+				printf_s("WARM!\n");
+			}
+			else if (difference >= 5)
+			{
+				printf_s("WARMER!\n");
+			}
+			else if (difference >= 2)
+			{
+				printf_s("HOT!\n");
+			}
+			else
+			{
+				printf_s("BURNNING!\n");
+			}
+			//second command
+			printf_s("try again\n\n");
+			//and so on...
+		}
+		else
+		{
+			printf_s("YOU WON!\n");
+			flag = 1; //ends the while loop
+		}
+	} while (!flag);
+}
+
+void Fibonachi_series()
+{
+	/*
+	The program starts from the index 1 - this means that the first variable
+	in Fibonatchi series in on place 1 - the index 0 that equels 0
+	and the second variable in index 1 is 1 and so on...
+	*/
+
+	int index;
+	int Two_back = 0, One_back = 1, current = 1;
+	printf_s("write the index of the number you wish to see in the Fibonatchi series: ");
+	scanf_s("%d", &index);
+
+	if (index == 0)
+	{
+		printf_s("The number on the 1st place in Fibonatchi series is 0\n");
+	}
+	else
+	{
+		/*
+		additinally we subtract 1 from the index the user gave
+		us because we already took care with the choise that the user 
+		chose the index 1.
+		*/
+
+		for (int i = 0; i < index-1; i++) 
+		{
+			current = One_back + Two_back;
+			Two_back = One_back;
+			One_back = current;
+		}
+		printf_s("The number on the %d place with the index %d, in Fibonatchi series is %d.\n", index+1, index, current);
+		printf_s("The index count start from 0 and the variable with the index 0 is the first variable, and so on...\n");
+	}
+}
+
+void calculate_pie_value_lyvnitch()
+{
+	int flag = 0, count = 2;
+	float temp, sum = 1;
+	float devided_by = 3;
+
+	while (!flag)
+	{
+		temp = (1 / devided_by);
+		
+		if (count % 2 == 0)
+		{
+			sum -= temp;
+		}
+		else
+		{
+			sum += temp;
+		}
+
+		if (temp < DELTA)
+		{
+			flag = 1;
+		}
+		else
+		{
+			devided_by += 2;
+			count++;
+		}
+	}
+
+	printf_s("%f\n", temp);
+	printf_s("The number of variables we used to calculate pie is %d,\n", count);
+	printf_s("and the value of pie we calculated is %f.\n",(sum * 4.0));
+}
+
+void free_ball_throw()
+{
+	double x0, y0, alpha, delta_t, v0;
+	double x, y ,t = 0;
+	int flag = 0;
+	printf_s("Give me the initial x cordinate please (meters): ");
+	scanf_s("%lf", &x0);
+	printf_s("Give me the initial y cordinate please (meters): ");
+	scanf_s("%lf", &y0);
+	printf_s("Give me the angle of the throw please (degrees): ");
+	scanf_s("%lf", &alpha);
+	printf_s("Give me the size of the time gamps of every mesurment please (seconds): ");
+	scanf_s("%lf", &delta_t);
+	printf_s("Give me the initial speed value please (meters per sec): ");
+	scanf_s("%lf", &v0);
+
+	alpha *= PI / 180;
+	printf_s("\n\n");
+
+	while(!flag)
+	{
+		x = x0 + (v0 * cos(alpha) * t);
+		y = y0 + (v0 * sin(alpha) * t) - ((G * pow(t, 2)) / 2);
+		
+		if (y >= 0) 
+		{
+			printf_s("The x cordinate in after %.2lf seconds is %.2lf\n", t, x);
+			printf_s("The y cordinate in after %.2lf seconds is %.2lf\n\n\n", t, y);
+			t += delta_t;
+		}
+		else
+		{
+			flag = 1;
+		}
+	}
 }
 
 /*
