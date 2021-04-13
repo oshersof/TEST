@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 #include<math.h>
 
 #define PI 3.141592653
 #define G 9.81
 #define DELTA 0.0001
+#define ARRAY_SIZE 10
 
 void time_request();
 void average_calc();
@@ -14,6 +16,9 @@ void Hot_cold_game();
 void Fibonachi_series();
 void calculate_pie_value_lyvnitch();
 void free_ball_throw();
+void encrypt();
+void catch_id();
+
 
 void main()
 {
@@ -26,6 +31,8 @@ void main()
 	//Fibonachi_series();
 	//calculate_pie_value_lyvnitch();
 	//free_ball_throw();
+	encrypt();
+	//catch_id();
 }
 
 void average_calc()
@@ -286,6 +293,53 @@ void free_ball_throw()
 		else
 		{
 			flag = 1;
+		}
+	}
+}
+
+void encrypt()
+{
+	char str[31];
+	char temp;
+	printf_s("Give me a sentence to encrypt: ");
+	gets_s(str,sizeof(str));
+
+	for (int i = 0; i < (strnlen_s(str, sizeof(str)) + 1 ) / 2; i++)
+	{
+		if (str[i] == ' ')
+		{
+			str[i] = '_';
+		}
+
+		if (str[(strnlen_s(str, sizeof(str)) - 1) - i] == ' ')
+		{
+			str[(strnlen_s(str, sizeof(str)) - 1) - i] = '_';
+		}
+
+		temp = str[i];
+		str[i] = str[(strnlen_s(str, sizeof(str)) - 1) - i];
+		str[(strnlen_s(str, sizeof(str)) - 1) - i] = temp;
+	}
+
+	printf_s("\n%s",str);
+}
+
+void catch_id()
+{
+	int found = 1;
+	int list1[ARRAY_SIZE] = { 123,321,564,548,695,852,476,325,641,854 };
+	int list2[ARRAY_SIZE] = { 259,321,564,236,201,700,476,217,641,655 };
+
+	for (int i = 0; i < ARRAY_SIZE; i++)
+	{
+		found = 1;
+		for (int j = 0; j < ARRAY_SIZE && found; j++)
+		{
+			if (list1[i] == list2[j])
+			{
+				printf_s("The problematic student is: %d\n", list1[i]);
+				found = 0;
+			}
 		}
 	}
 }
