@@ -31,7 +31,7 @@ void main()
 	//Fibonachi_series();
 	//calculate_pie_value_lyvnitch();
 	//free_ball_throw();
-	encrypt();
+	//encrypt();
 	//catch_id();
 }
 
